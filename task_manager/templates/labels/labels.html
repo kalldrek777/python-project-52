@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+    <div class="text-center alert alert-{{ message.tags }}">
+             {{ message }}
+    </div>
+    {% endfor %}
+{% endif %}
+
+<div class="container wrapper flex-grow-1">
+
+    <h1 class="my-4">Метки</h1>
+
+<a class="btn btn-primary mb-3" href="/labels/create/">Создать метку</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Имя</th>
+      <th>Дата создания</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for label in labels %}
+
+      <tr>
+        <td>{{ label.id }}</td>
+        <td>{{ label.name }}</td>
+        <td>{{ label.creation_date }}</td>
+        <td>
+          <a href="{% url 'labels:update_page' pk=label.id %}">Изменить</a>
+          <br>
+          <a href="{% url 'labels:delete_page' pk=label.id %}">Удалить</a>
+        </td>
+      </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+
+    </div>
+
+{% endblock %}
