@@ -11,6 +11,10 @@
     {% endfor %}
 {% endif %}
 
+<form method="get" action="{% url 'tasks:index_page' %}">{% csrf_token %}
+  {{ filter.form.as_p }}
+  <input type="submit" value="took" class="btn btn-primary">
+</form>
 
 <h1 class="my-4">Задачи</h1>
 
@@ -30,7 +34,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for task in tasks %}
+    {% for task in filter.qs %}
       <tr>
         <td>{{ task.id }}</td>
         <td>

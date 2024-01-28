@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from task_manager.mixins import LoginRequiredMixin
 
 from .models import CustomUser
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
@@ -21,7 +22,7 @@ class UserView(ListView):
         return redirect('index_page')
 
 
-class UserUpdateView(SuccessMessageMixin, UpdateView):
+class UserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     form_class = UpdateForm
     model = CustomUser
     success_message = "User is changed successfully"
@@ -32,7 +33,7 @@ class UserUpdateView(SuccessMessageMixin, UpdateView):
         return reverse_lazy('index_page')
 
 
-class UserDeleteView(SuccessMessageMixin, DeleteView):
+class UserDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = CustomUser
     template_name = 'users/delete.html'
     success_message = "User is deleted successfully"

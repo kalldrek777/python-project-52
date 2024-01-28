@@ -31,15 +31,9 @@
         <td>{{ user.first_name }} {{ user.second_name }}</td>
         <td>{{ user.date_joined }}</td>
         <td>
-          {% if request.user.is_authenticated %}
           <a href="{% url 'users:update_page' pk=user.id %}">Изменить</a>
           <br>
           <a href="{% url 'users:delete_page' pk=user.id %}">Удалить</a>
-          {% else %}
-          <a href="{% url 'login_page' %}">Изменить</a>
-          <br>
-          <a href="{% url 'login_page' %}">Удалить</a>
-          {% endif %}
         </td>
       </tr>
   </tbody>

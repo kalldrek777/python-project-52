@@ -4,6 +4,11 @@
 {% block content %}
 {% if messages %}
     {% for message in messages %}
+        {% if message.tags == 'warning' %}
+            <div class="text-center alert alert-danger">
+                     {{ message }}
+            </div>
+        {% endif %}
     {% endfor %}
 {% endif %}
 

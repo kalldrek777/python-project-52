@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'statuses.apps.StatusesConfig',
     'tasks.apps.TasksConfig',
-    'labels.apps.LabelsConfig'
+    'labels.apps.LabelsConfig',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
