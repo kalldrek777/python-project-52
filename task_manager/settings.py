@@ -84,20 +84,33 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if DATABASE_TYPE == 'postgreSQL':
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=DATABASE_URL,
-            conn_max_age=600,
-        )
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+# if DATABASE_TYPE == 'postgreSQL':
+#     database_url = os.getenv('DATABASE_URL')
+# else:
+#     database_url = os.getenv('DATABASE_URL_PRODUCTION')
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=database_url,
+#         conn_max_age=600,
+#         conn_health_checks=True
+#     ),
+# }
+
+# if DATABASE_TYPE == 'postgreSQL':
+DATABASES = {
+    'default': dj_database_url.config(
+        default=DATABASE_URL,
+        conn_max_age=600,
+        conn_health_checks=True
+    ),
+}
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
 
 
 # Password validation
