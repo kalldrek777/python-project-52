@@ -26,7 +26,7 @@ load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 DATABASE_TYPE = os.getenv('DATABASE_TYPE', default='postgreSQL')
-DATABASE_URL = os.getenv('DATABASE_URL')
+DATABASE_URL = "postgres://amethyst:b1FUh1N6F8osqDDzpIIugRqbKu8vC0Jg@dpg-cldpq9tlo5ps73f2p4pg-a.oregon-postgres.render.com/database_0p5m"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
