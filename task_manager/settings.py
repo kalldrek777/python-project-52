@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
 import os.path
 from pathlib import Path
 from dotenv import load_dotenv
@@ -28,7 +27,6 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 DATABASE_TYPE = os.getenv('DATABASE_TYPE', default='postgreSQL')
 DATABASE_URL = os.getenv('DATABASE_URL')
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -86,10 +84,11 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if DATABASE_TYPE == 'postgresSQL':
+if DATABASE_TYPE == 'postgreSQL':
     DATABASES = {
         'default': dj_database_url.config(
             default=DATABASE_URL,
+            conn_max_age=600,
         )
     }
 else:
