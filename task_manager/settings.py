@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os.path
 from pathlib import Path
 from dotenv import load_dotenv
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,9 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
+load_dotenv()
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-e_-w3%5$8s_*1xaf*n4_(g*rvu@luw30ym7uoza7^37*k9de2&'
+SECRET_KEY = os.getenv('SECRET_KEY')
+DATABASE_TYPE = os.getenv('DATABASE_TYPE', default='postgreSQL')
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -81,12 +86,19 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DATABASE_TYPE == 'postgresSQL':
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+        )
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
