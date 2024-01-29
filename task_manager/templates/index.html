@@ -2,5 +2,18 @@
 {% block title %}{% endblock %}
 
 {% block content %}
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'warning' %}
+            <div class="text-center alert alert-danger">
+                     {{ message }}
+            </div>
+        {% else %}
+            <div class="text-center alert alert-{{ message.tags }}">
+                     {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
 <p>hello p</p>
 {% endblock %}

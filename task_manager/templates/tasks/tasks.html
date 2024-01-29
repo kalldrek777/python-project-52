@@ -5,11 +5,20 @@
 
 {% if messages %}
     {% for message in messages %}
-    <div class="text-center alert alert-{{ message.tags }}">
-             {{ message }}
-    </div>
+        {% if message.tags == 'warning' %}
+            <div class="text-center alert alert-danger">
+                     {{ message }}
+            </div>
+        {% else %}
+            <div class="text-center alert alert-{{ message.tags }}">
+                     {{ message }}
+            </div>
+        {% endif %}
     {% endfor %}
 {% endif %}
+
+<div class="container wrapper flex-grow-1">
+
 
 <form method="get" action="{% url 'tasks:index_page' %}">{% csrf_token %}
   {{ filter.form.as_p }}
@@ -57,6 +66,6 @@
   </tbody>
 </table>
 
-
+</div>
 
 {% endblock %}

@@ -17,15 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import IndexView
-from users.views import LoginUser, logout_user
+from .users.views import LoginUser, logout_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index_page'),
-    path('users/', include('users.urls', namespace='users')),
-    path('statuses/', include('statuses.urls', namespace='statuses')),
-    path('tasks/', include('tasks.urls', namespace='tasks')),
-    path('labels/', include('labels.urls', namespace='labels')),
+    path('users/', include('task_manager.users.urls', namespace='users')),
+    path('statuses/', include('task_manager.statuses.urls', namespace='statuses')),
+    path('tasks/', include('task_manager.tasks.urls', namespace='tasks')),
+    path('labels/', include('task_manager.labels.urls', namespace='labels')),
     path('login/', LoginUser.as_view(), name='login_page'),
     path('logout/', logout_user, name='logout'),
 ]

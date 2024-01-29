@@ -6,9 +6,15 @@
 
 {% if messages %}
     {% for message in messages %}
-    <div class="text-center alert alert-{{ message.tags }}">
-             {{ message }}
-    </div>
+        {% if message.tags == 'warning' %}
+            <div class="text-center alert alert-danger">
+                     {{ message }}
+            </div>
+        {% else %}
+            <div class="text-center alert alert-{{ message.tags }}">
+                     {{ message }}
+            </div>
+        {% endif %}
     {% endfor %}
 {% endif %}
 

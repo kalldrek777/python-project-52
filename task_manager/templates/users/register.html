@@ -2,6 +2,8 @@
 {% block title %}{% endblock %}
 
 {% block content %}
+<div class="container wrapper flex-grow-1">
+
 <form method="post">
     {% csrf_token %}
     {% for f in form %}
@@ -10,4 +12,5 @@
     {% endfor %}
     <button type="submit">Registration</button>
 </form>
+</div>
 {% endblock %}

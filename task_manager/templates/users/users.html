@@ -5,11 +5,20 @@
 
 {% if messages %}
     {% for message in messages %}
-    <div class="text-center alert alert-{{ message.tags }}">
-             {{ message }}
-    </div>
+        {% if message.tags == 'warning' %}
+            <div class="text-center alert alert-danger">
+                     {{ message }}
+            </div>
+        {% else %}
+            <div class="text-center alert alert-{{ message.tags }}">
+                     {{ message }}
+            </div>
+        {% endif %}
     {% endfor %}
 {% endif %}
+
+<div class="container wrapper flex-grow-1">
+
 
       <h1 class="my-4">Пользователи</h1>
       
@@ -39,4 +48,7 @@
   </tbody>
     {% endfor %}
 </table>
+
+</div>
+
 {% endblock %}
