@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}{% endblock %}
 
+{% load i18n %}
+
 {% block content %}
 <form method="post">{% csrf_token %}
     <p>Are you sure you want to delete "{{ label }}"?</p>
     {{ form }}
-    <input type="submit" value="Confirm">
+    <input type="submit" value="{% translate 'Удалить' %}">
 </form>
 {% endblock %}
