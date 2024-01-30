@@ -24,7 +24,7 @@
 
 <form method="get" action="{% url 'tasks:index_page' %}">{% csrf_token %}
   {{ filter.form.as_p }}
-  <input type="submit" value="{% translate Показать %}" class="btn btn-primary">
+  <input type="submit" value="{% translate 'Показать' %}" class="btn btn-primary">
 </form>
 
 <h1 class="my-4">{% translate "Задачи" %}</h1>
