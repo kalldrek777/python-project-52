@@ -30,7 +30,7 @@ DATABASE_URL = os.getenv('DATABASE_URL', default='sqlite3')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['webserver', 'localhost']
 
 
 # Application definition
