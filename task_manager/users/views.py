@@ -25,7 +25,8 @@ class UserView(ListView):
 class UserUpdateView(AuthorRequaredMixin, SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     form_class = UpdateForm
     model = CustomUser
-    success_message = "User is changed successfully"
+    success_message = "Пользователь успешно изменен"
+    message_not_creator = "У вас нет прав для изменения другого пользователя"
     # fields = ['first_name', 'second_name', 'username']
     template_name = "users/update.html"
     redirect_url = 'users:index_page'
@@ -37,7 +38,8 @@ class UserUpdateView(AuthorRequaredMixin, SuccessMessageMixin, LoginRequiredMixi
 class UserDeleteView(AuthorRequaredMixin, SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = CustomUser
     template_name = 'users/delete.html'
-    success_message = "User is deleted successfully"
+    success_message = "Пользователь успешно удален"
+    message_not_creator = "У вас нет прав для изменения другого пользователя"
     redirect_url = 'users:index_page'
 
     def get_success_url(self):
@@ -47,7 +49,7 @@ class UserDeleteView(AuthorRequaredMixin, SuccessMessageMixin, LoginRequiredMixi
 class UserCreateView(SuccessMessageMixin, CreateView):
     form_class = RegisterForm
     template_name = 'users/register.html'
-    success_message = "User is successfully registered"
+    success_message = "Пользователь успешно зарегистрирован"
     success_url = reverse_lazy('login_page')
 
     def form_valid(self, form):

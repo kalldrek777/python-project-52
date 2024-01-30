@@ -18,7 +18,7 @@ class LabelCreateView(SuccessMessageMixin, CreateView):
     form_class = LabelForm
     model = Label
     template_name = 'users/update.html'
-    success_message = "Label is successfully registered"
+    success_message = "Метка успешно создана"
     success_url = reverse_lazy('labels:index_page')
 
     def form_valid(self, form):
@@ -29,7 +29,7 @@ class LabelCreateView(SuccessMessageMixin, CreateView):
 class LabelUpdateView(SuccessMessageMixin, UpdateView):
     form_class = LabelForm
     model = Label
-    success_message = "Label is changed successfully"
+    success_message = "Метка успешно изменена"
     template_name = "users/update.html"
 
     def get_success_url(self):
@@ -39,7 +39,8 @@ class LabelUpdateView(SuccessMessageMixin, UpdateView):
 class LabelDeleteView(ObjectUnusedRequaredMixin, SuccessMessageMixin, DeleteView):
     model = Label
     template_name = 'labels/delete.html'
-    success_message = "Label is deleted successfully"
+    success_message = "Метка успешно удалена"
+    message_used_object = "Невозможно удалить метку, потому что она используется"
     redirect_url = 'labels:index_page'
 
     def get_success_url(self):

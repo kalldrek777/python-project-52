@@ -26,7 +26,7 @@ class TaskCreateView(SuccessMessageMixin, CreateView):
     form_class = TaskForm
     model = Task
     template_name = 'users/update.html'
-    success_message = "Task is successfully registered"
+    success_message = "Задача успешно создана"
     success_url = reverse_lazy('tasks:index_page')
 
     def form_valid(self, form):
@@ -39,7 +39,7 @@ class TaskCreateView(SuccessMessageMixin, CreateView):
 class TaskUpdateView(SuccessMessageMixin, UpdateView):
     form_class = TaskForm
     model = Task
-    success_message = "Task is changed successfully"
+    success_message = "Задача успешно изменена"
     template_name = "users/update.html"
 
     def get_success_url(self):
@@ -49,7 +49,8 @@ class TaskUpdateView(SuccessMessageMixin, UpdateView):
 class TaskDeleteView(AuthorRequaredMixin, SuccessMessageMixin, DeleteView):
     model = Task
     template_name = 'tasks/delete.html'
-    success_message = "Task is deleted successfully"
+    message_not_creator = "Задачу может удалить только ее автор"
+    success_message = "Задача успешно удалена"
     redirect_url = 'tasks:index_page'
 
     def get_success_url(self):

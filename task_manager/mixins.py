@@ -9,7 +9,7 @@ class LoginRequiredMixin:
     If not - returns redirect('login') with message.
     Attrs: message_not_authenticated: str
     """
-    message_not_authenticated = 'You are not login. Please, login'
+    message_not_authenticated = 'Вы не авторизованы! Пожалуйста, выполните вход.'
 
     def dispatch(self, request, *args, **kwargs):
         user = request.user
