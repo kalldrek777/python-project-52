@@ -23,7 +23,7 @@
 
         {% if request.user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}" aria-disabled="true">{% translate 'Выход' %}</a>
+          <a class="nav-link" href="{% url 'logout' %}">{% translate 'Выход' %}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'statuses:index_page' %}">{% translate 'Статусы' %}</a>
@@ -32,11 +32,11 @@
           <a class="nav-link" href="{% url 'labels:index_page' %}">{% translate 'Метки' %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'tasks:index_page' %}" aria-disabled="true">{% translate 'Задачи' %}</a>
+          <a class="nav-link" href="{% url 'tasks:index_page' %}">{% translate 'Задачи' %}</a>
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'login_page' %}" aria-disabled="true">{% translate 'Вход' %}</a>
+          <a class="nav-link" href="{% url 'login_page' %}">{% translate 'Вход' %}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'users:create_page' %}">{% translate 'Регистрация' %}</a>
