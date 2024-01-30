@@ -20,6 +20,9 @@ class StatusCreateView(SuccessMessageMixin, CreateView):
     template_name = 'users/update.html'
     success_message = "Статус успешно создан"
     success_url = reverse_lazy('statuses:index_page')
+    extra_context = {
+        "button_text": "Создать"
+    }
 
     def form_valid(self, form):
         form.save()
@@ -31,6 +34,9 @@ class StatusUpdateView(SuccessMessageMixin, UpdateView):
     model = Status
     success_message = "Статус успешно изменен"
     template_name = "users/update.html"
+    extra_context = {
+        "button_text": "Изменить"
+    }
 
     def get_success_url(self):
         return reverse_lazy('statuses:index_page')

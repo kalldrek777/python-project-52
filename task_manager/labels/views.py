@@ -20,6 +20,9 @@ class LabelCreateView(SuccessMessageMixin, CreateView):
     template_name = 'users/update.html'
     success_message = "Метка успешно создана"
     success_url = reverse_lazy('labels:index_page')
+    extra_context = {
+        "button_text": "Создать"
+    }
 
     def form_valid(self, form):
         form.save()
@@ -31,6 +34,9 @@ class LabelUpdateView(SuccessMessageMixin, UpdateView):
     model = Label
     success_message = "Метка успешно изменена"
     template_name = "users/update.html"
+    extra_context = {
+        "button_text": "Изменить"
+    }
 
     def get_success_url(self):
         return reverse_lazy('labels:index_page')

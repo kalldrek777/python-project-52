@@ -28,6 +28,9 @@ class TaskCreateView(SuccessMessageMixin, CreateView):
     template_name = 'users/update.html'
     success_message = "Задача успешно создана"
     success_url = reverse_lazy('tasks:index_page')
+    extra_context = {
+        "button_text": "Создать"
+    }
 
     def form_valid(self, form):
         task = form.save(commit=False)
@@ -41,6 +44,9 @@ class TaskUpdateView(SuccessMessageMixin, UpdateView):
     model = Task
     success_message = "Задача успешно изменена"
     template_name = "users/update.html"
+    extra_context = {
+        "button_text": "Изменить"
+    }
 
     def get_success_url(self):
         return reverse_lazy('tasks:index_page')

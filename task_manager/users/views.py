@@ -27,9 +27,11 @@ class UserUpdateView(AuthorRequaredMixin, SuccessMessageMixin, LoginRequiredMixi
     model = CustomUser
     success_message = "Пользователь успешно изменен"
     message_not_creator = "У вас нет прав для изменения другого пользователя"
-    # fields = ['first_name', 'second_name', 'username']
     template_name = "users/update.html"
     redirect_url = 'users:index_page'
+    extra_context = {
+        "button_text": "Изменить"
+    }
 
     def get_success_url(self):
         return reverse_lazy('users:index_page')
