@@ -32,7 +32,7 @@ class UserUpdateView(AuthorRequaredMixin, SuccessMessageMixin, LoginRequiredMixi
     redirect_url = 'users:index_page'
 
     def get_success_url(self):
-        return reverse_lazy('index_page')
+        return reverse_lazy('users:index_page')
 
 
 class UserDeleteView(AuthorRequaredMixin, SuccessMessageMixin, LoginRequiredMixin, DeleteView):
@@ -43,7 +43,7 @@ class UserDeleteView(AuthorRequaredMixin, SuccessMessageMixin, LoginRequiredMixi
     redirect_url = 'users:index_page'
 
     def get_success_url(self):
-        return reverse_lazy('index_page')
+        return reverse_lazy('users:index_page')
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):
