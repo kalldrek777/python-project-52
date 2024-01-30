@@ -3,6 +3,8 @@
 
 {% block content %}
 
+{% load i18n %}
+
 {% if messages %}
     {% for message in messages %}
         {% if message.tags == 'warning' %}
@@ -25,20 +27,20 @@
   <input type="submit" value="took" class="btn btn-primary">
 </form>
 
-<h1 class="my-4">Задачи</h1>
+<h1 class="my-4">{% translate "Задачи" %}</h1>
 
-<a class="btn btn-primary mb-3" href="{% url 'tasks:create_page' %}">Создать задачу</a>
+<a class="btn btn-primary mb-3" href="{% url 'tasks:create_page' %}">{% translate "Создать задачу" %}</a>
 
 <table class="table table-striped">
 
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Имя</th>
-      <th>Статус</th>
-      <th>Автор</th>
-      <th>Исполнитель</th>
-      <th>Дата создания</th>
+      <th>{% translate "ID" %}</th>
+      <th>{% translate "Имя" %}</th>
+      <th>{% translate "Статус" %}</th>
+      <th>{% translate "Автор" %}</th>
+      <th>{% translate "Исполнитель" %}</th>
+      <th>{% translate "Дата создания" %}</th>
       <th></th>
     </tr>
   </thead>
@@ -54,9 +56,9 @@
         <td>{{ task.executor }}</td>
         <td>{{ task.created_date }}</td>
         <td>
-          <a href="{% url 'tasks:update_page' pk=task.id %}">Изменить</a>
+          <a href="{% url 'tasks:update_page' pk=task.id %}">{% translate "Изменить" %}</a>
           <br>
-          <a href="{% url 'tasks:delete_page' pk=task.id %}">Удалить</a>
+          <a href="{% url 'tasks:delete_page' pk=task.id %}">{% translate "Удалить" %}</a>
         </td>
       </tr>
     {% endfor %}
