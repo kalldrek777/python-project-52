@@ -52,7 +52,7 @@
           <a href="{% url 'tasks:detail_page' pk=task.id %}">{{ task.name }}</a>
         </td>
         <td>{{ task.status }}</td>
-        <td>{{ task.author.username }}</td>
+        <td>{{ task.author }}</td>
         <td>{{ task.executor }}</td>
         <td>{{ task.created_date }}</td>
         <td>
