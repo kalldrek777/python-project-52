@@ -6,8 +6,8 @@ from task_manager.labels.models import Label
 
 
 class TaskForm(forms.ModelForm):
-    name = forms.CharField(label='Имя', widget=forms.TextInput(attrs={'class': 'form-input'}))
-    description = forms.CharField(label='Описание', widget=forms.TextInput(attrs={'class': 'form-input'}))
+    name = forms.CharField(label='Имя', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    description = forms.CharField(label='Описание', widget=forms.Textarea(attrs={'class': 'form-control'}))
     status = forms.ModelChoiceField(label='Статус', queryset=Status.objects.all())
     executor = forms.ModelChoiceField(label='Исполнитель', queryset=CustomUser.objects.all())
     labels = forms.ModelMultipleChoiceField(label='Метки', queryset=Label.objects.all(), required=False)
