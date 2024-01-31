@@ -4,6 +4,7 @@
 {% block content %}
 
 {% load i18n %}
+{% load django_bootstrap5 %}
 
 {% if messages %}
     {% for message in messages %}
@@ -23,7 +24,11 @@
 
 
 <form method="get" action="{% url 'tasks:index_page' %}">{% csrf_token %}
-  {{ filter.form.as_p }}
+    {% for field in filter.form %}
+    <div class="fieldWrapper mb-3">
+        {% bootstrap_field field placeholder='' show_help=False %}
+    </div>
+    {% endfor %}
   <input type="submit" value="{% translate 'Показать' %}" class="btn btn-primary">
 </form>
 

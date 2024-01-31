@@ -3,13 +3,25 @@ from django.forms import CheckboxInput
 
 from .models import Task
 from task_manager.labels.models import Label
+from task_manager.statuses.models import Status
+from task_manager.users.models import CustomUser
 
 
 class TasksFilter(django_filters.FilterSet):
+    status = django_filters.ModelChoiceFilter(
+        label='Статус',
+        field_name='status',
+        queryset = Status.objects.all()
+    )
+    executor = django_filters.ModelChoiceFilter(
+        label='Исполнитель',
+        field_name='executor',
+        queryset=CustomUser.objects.all()
+    )
 
     labels = django_filters.ModelChoiceFilter(
         field_name='labels',
-        # label=_('Label'),
+        label="Метка",
         queryset=Label.objects.all())
 
     self_tasks = django_filters.BooleanFilter(
