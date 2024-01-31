@@ -15,7 +15,7 @@ class TasksFilter(django_filters.FilterSet):
     self_tasks = django_filters.BooleanFilter(
         field_name="author",
         method='logined_user_is_creator_filter',
-        label="Show only my tasks",
+        label="Только свои задачи",
         widget=CheckboxInput(attrs={'checked': False}))
 
     def logined_user_is_creator_filter(self, queryset, name, value):
