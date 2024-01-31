@@ -24,7 +24,7 @@ class Task(models.Model):
         on_delete=models.PROTECT,
         related_name='executor'
     )
-    labels = models.ManyToManyField(Label, blank=True)
+    labels = models.ManyToManyField(Label)
 
     def get_author_username(self):
         return self.author.username

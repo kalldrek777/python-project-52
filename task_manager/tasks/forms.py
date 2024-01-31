@@ -10,7 +10,7 @@ class TaskForm(forms.ModelForm):
     description = forms.CharField(label='Описание', widget=forms.TextInput(attrs={'class': 'form-input'}))
     status = forms.ModelChoiceField(label='Статус', queryset=Status.objects.all())
     executor = forms.ModelChoiceField(label='Исполнитель', queryset=CustomUser.objects.all())
-    labels = forms.ModelMultipleChoiceField(label='Метки', queryset=Label.objects.all())
+    labels = forms.ModelMultipleChoiceField(label='Метки', queryset=Label.objects.all(), required=False)
 
     class Meta:
         model = Task
