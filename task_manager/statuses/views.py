@@ -1,5 +1,4 @@
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView
 from .forms import StatusForm
@@ -42,11 +41,13 @@ class StatusUpdateView(SuccessMessageMixin, UpdateView):
         return reverse_lazy('statuses:index_page')
 
 
-class StatusDeleteView(ObjectUnusedRequaredMixin, SuccessMessageMixin, DeleteView):
+class StatusDeleteView(ObjectUnusedRequaredMixin,
+                       SuccessMessageMixin, DeleteView):
     model = Status
     template_name = 'statuses/delete.html'
     success_message = "Статус успешно удален"
-    message_used_object = "Невозможно удалить статус, потому что он используется"
+    message_used_object = ("Невозможно удалить статус, "
+                           "потому что он используется")
     redirect_url = 'statuses:index_page'
 
     def get_success_url(self):

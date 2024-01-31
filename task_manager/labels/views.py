@@ -1,5 +1,4 @@
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Label
@@ -12,8 +11,8 @@ class LabelView(ListView):
     model = Label
     context_object_name = 'labels'
     template_name = 'labels/labels.html'
-    
-    
+
+
 class LabelCreateView(SuccessMessageMixin, CreateView):
     form_class = LabelForm
     model = Label
@@ -42,11 +41,13 @@ class LabelUpdateView(SuccessMessageMixin, UpdateView):
         return reverse_lazy('labels:index_page')
 
 
-class LabelDeleteView(ObjectUnusedRequaredMixin, SuccessMessageMixin, DeleteView):
+class LabelDeleteView(ObjectUnusedRequaredMixin,
+                      SuccessMessageMixin, DeleteView):
     model = Label
     template_name = 'labels/delete.html'
     success_message = "Метка успешно удалена"
-    message_used_object = "Невозможно удалить метку, потому что она используется"
+    message_used_object = ("Невозможно удалить метку,"
+                           " потому что она используется")
     redirect_url = 'labels:index_page'
 
     def get_success_url(self):

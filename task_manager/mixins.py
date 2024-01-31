@@ -9,7 +9,8 @@ class LoginRequiredMixin:
     If not - returns redirect('login') with message.
     Attrs: message_not_authenticated: str
     """
-    message_not_authenticated = 'Вы не авторизованы! Пожалуйста, выполните вход.'
+    message_not_authenticated = ('Вы не авторизованы! Пожалуйста'
+                                 ', выполните вход.')
 
     def dispatch(self, request, *args, **kwargs):
         user = request.user
@@ -47,4 +48,3 @@ class AuthorRequaredMixin:
                 messages.warning(request, self.message_not_creator)
                 return redirect(reverse(self.redirect_url))
         return super().dispatch(request, *args, **kwargs)
-

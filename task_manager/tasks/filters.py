@@ -11,7 +11,7 @@ class TasksFilter(django_filters.FilterSet):
     status = django_filters.ModelChoiceFilter(
         label='Статус',
         field_name='status',
-        queryset = Status.objects.all()
+        queryset=Status.objects.all()
     )
     executor = django_filters.ModelChoiceFilter(
         label='Исполнитель',
