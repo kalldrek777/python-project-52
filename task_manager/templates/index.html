@@ -15,5 +15,11 @@
         {% endif %}
     {% endfor %}
 {% endif %}
-<p>{% translate "hello p" %}</p>
+<div class="container wrapper flex-grow-1">
+
+    <div class="card-body p-5 bg-light">
+        <div class="display-4">Привет {{ user }}!</div>
+    </div>
+
+</div>
 {% endblock %}

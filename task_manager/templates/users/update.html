@@ -6,6 +6,8 @@
 
 
 {% block content %}
+<div class="container wrapper flex-grow-1">
+
 <form method="post">
     {% csrf_token %}
     {% for field in form %}
@@ -15,5 +17,6 @@
   {% endfor %}
   <input class="btn btn-outline-warning me-2" type="submit" value="{{ button_text }}">
 </form>
+</div>
 
 {% endblock %}
