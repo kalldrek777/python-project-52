@@ -12,5 +12,13 @@
     "username": "ivlesh",
     "password1": "insecure_pass",
     "password2": "insecure_pass"
-  }
+  },
+    "user3": {
+      "first_name": "Igor",
+      "last_name": "Loskutov",
+      "username": "agrx",
+      "password1": "simple_password",
+      "password2": "simple_password"
+
+    }
 }

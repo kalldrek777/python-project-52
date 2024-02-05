@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-# Create your models here.
 class CustomUser(AbstractUser):
     first_name = models.CharField(max_length=255, default='')
     last_name = models.CharField(max_length=255, default='')
@@ -11,7 +10,7 @@ class CustomUser(AbstractUser):
         return self.first_name + ' ' + self.last_name
 
     def get_full_name(self):
-        return self.first_name + ' ' + self.last_name
+        return self.__str__()
 
     def get_author_username(self):
         return self.username

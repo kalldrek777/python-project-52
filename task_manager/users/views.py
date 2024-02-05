@@ -8,8 +8,6 @@ from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from .forms import RegisterForm, UpdateForm
 
 
-# Create your views here.
-
 class UserView(ListView):
     model = CustomUser
     context_object_name = 'users'
@@ -19,8 +17,8 @@ class UserView(ListView):
         return redirect('index_page')
 
 
-class UserUpdateView(AuthorRequaredMixin, SuccessMessageMixin,
-                     LoginRequiredMixin, UpdateView):
+class UserUpdateView(LoginRequiredMixin, SuccessMessageMixin,
+                     AuthorRequaredMixin, UpdateView):
     form_class = UpdateForm
     model = CustomUser
     success_message = "Пользователь успешно изменен"
@@ -35,8 +33,8 @@ class UserUpdateView(AuthorRequaredMixin, SuccessMessageMixin,
         return reverse_lazy('users:index_page')
 
 
-class UserDeleteView(AuthorRequaredMixin, SuccessMessageMixin,
-                     LoginRequiredMixin, DeleteView):
+class UserDeleteView(LoginRequiredMixin, SuccessMessageMixin,
+                     AuthorRequaredMixin, DeleteView):
     model = CustomUser
     template_name = 'users/delete.html'
     success_message = "Пользователь успешно удален"

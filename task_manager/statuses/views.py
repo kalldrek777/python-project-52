@@ -3,17 +3,17 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView
 from .forms import StatusForm
 from .models import Status
-from task_manager.mixins import ObjectUnusedRequaredMixin
+from task_manager.mixins import (ObjectUnusedRequaredMixin,
+                                 LoginRequiredMixin)
 
 
-# Create your views here.
-class StatusView(ListView):
+class StatusView(LoginRequiredMixin, ListView):
     model = Status
     context_object_name = 'statuses'
     template_name = 'statuses/statuses.html'
 
 
-class StatusCreateView(SuccessMessageMixin, CreateView):
+class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = StatusForm
     model = Status
     template_name = 'users/update.html'
@@ -28,7 +28,7 @@ class StatusCreateView(SuccessMessageMixin, CreateView):
         return super(StatusCreateView, self).form_valid(form)
 
 
-class StatusUpdateView(SuccessMessageMixin, UpdateView):
+class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = StatusForm
     model = Status
     success_message = "Статус успешно изменен"
@@ -41,7 +41,7 @@ class StatusUpdateView(SuccessMessageMixin, UpdateView):
         return reverse_lazy('statuses:index_page')
 
 
-class StatusDeleteView(ObjectUnusedRequaredMixin,
+class StatusDeleteView(ObjectUnusedRequaredMixin, LoginRequiredMixin,
                        SuccessMessageMixin, DeleteView):
     model = Status
     template_name = 'statuses/delete.html'

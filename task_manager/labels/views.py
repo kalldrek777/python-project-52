@@ -3,17 +3,17 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Label
 from .forms import LabelForm
-from task_manager.mixins import ObjectUnusedRequaredMixin
+from task_manager.mixins import (ObjectUnusedRequaredMixin,
+                                 LoginRequiredMixin)
 
 
-# Create your views here.
-class LabelView(ListView):
+class LabelView(LoginRequiredMixin, ListView):
     model = Label
     context_object_name = 'labels'
     template_name = 'labels/labels.html'
 
 
-class LabelCreateView(SuccessMessageMixin, CreateView):
+class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = LabelForm
     model = Label
     template_name = 'users/update.html'
@@ -28,7 +28,7 @@ class LabelCreateView(SuccessMessageMixin, CreateView):
         return super(LabelCreateView, self).form_valid(form)
 
 
-class LabelUpdateView(SuccessMessageMixin, UpdateView):
+class LabelUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = LabelForm
     model = Label
     success_message = "Метка успешно изменена"
@@ -41,7 +41,7 @@ class LabelUpdateView(SuccessMessageMixin, UpdateView):
         return reverse_lazy('labels:index_page')
 
 
-class LabelDeleteView(ObjectUnusedRequaredMixin,
+class LabelDeleteView(ObjectUnusedRequaredMixin, LoginRequiredMixin,
                       SuccessMessageMixin, DeleteView):
     model = Label
     template_name = 'labels/delete.html'

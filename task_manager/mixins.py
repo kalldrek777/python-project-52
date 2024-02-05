@@ -25,15 +25,10 @@ class ObjectUnusedRequaredMixin:
     redirect_url = 'index_page'
 
     def form_valid(self, form):
-        # try:
-        #     getattr(self.object, 'is_object_in_use')
         if self.object.is_object_in_use():
             messages.warning(self.request, self.message_used_object)
             return redirect(self.redirect_url)
         return super().form_valid(form)
-        # except AttributeError:
-        #     messages.warning(self.request, self.message_object_has_not_attr)
-        #     return redirect(reverse(self.url_name_object_used))
 
 
 class AuthorRequaredMixin:

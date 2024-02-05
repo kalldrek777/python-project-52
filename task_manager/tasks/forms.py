@@ -28,7 +28,3 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ['name', 'description', 'status', 'executor', 'labels']
-        # widgets = {
-        #     "description": forms.Textarea(attrs={"cols": 40, "rows": 10})
-        #
-        # }

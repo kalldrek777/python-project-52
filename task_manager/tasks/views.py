@@ -9,20 +9,18 @@ from .filters import TasksFilter
 from task_manager.mixins import AuthorRequaredMixin
 
 
-# Create your views here.
-
 class TaskView(LoginRequiredMixin, FilterView):
     filterset_class = TasksFilter
     template_name = 'tasks/tasks.html'
 
 
-class TaskDetailView(DetailView):
+class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     context_object_name = 'task'
     template_name = 'tasks/task_detail.html'
 
 
-class TaskCreateView(SuccessMessageMixin, CreateView):
+class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = TaskForm
     model = Task
     template_name = 'users/update.html'
@@ -39,7 +37,7 @@ class TaskCreateView(SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class TaskUpdateView(SuccessMessageMixin, UpdateView):
+class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = TaskForm
     model = Task
     success_message = "Задача успешно изменена"
@@ -52,7 +50,7 @@ class TaskUpdateView(SuccessMessageMixin, UpdateView):
         return reverse_lazy('tasks:index_page')
 
 
-class TaskDeleteView(AuthorRequaredMixin, SuccessMessageMixin, DeleteView):
+class TaskDeleteView(LoginRequiredMixin, AuthorRequaredMixin, DeleteView):
     model = Task
     template_name = 'tasks/delete.html'
     message_not_creator = "Задачу может удалить только ее автор"

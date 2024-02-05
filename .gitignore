@@ -4,3 +4,5 @@ __pycache__/
 *.dist
 *.idea
 .venv
+db.sqlite3
+static/css
