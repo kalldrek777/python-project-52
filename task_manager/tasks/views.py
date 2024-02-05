@@ -50,7 +50,8 @@ class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return reverse_lazy('tasks:index_page')
 
 
-class TaskDeleteView(LoginRequiredMixin, AuthorRequaredMixin, DeleteView):
+class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin,
+                     AuthorRequaredMixin, DeleteView):
     model = Task
     template_name = 'tasks/delete.html'
     message_not_creator = "Задачу может удалить только ее автор"

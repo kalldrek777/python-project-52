@@ -16,7 +16,7 @@ class TestStatusesCrud(TestCase):
             username=self.user_data['user1']['username'],
             password=self.user_data['user1']['password1'],
         )
-        self.user = CustomUser.objects.get(id=1)
+        self.user = CustomUser.objects.get(first_name=self.user_data['user1']['first_name'])
 
         Status.objects.create(name='status1')
         Status.objects.create(name='status2')
