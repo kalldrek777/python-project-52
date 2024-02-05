@@ -65,8 +65,8 @@ class TestUsersCrud(TestCase):
                                            kwargs={'pk': user.id}))
         self.assertEqual(responce.status_code, 200)
         self.assertTemplateUsed(responce, template_name='users/update.html')
-        responce = self.client.post(reverse(
-            'users:update_page', kwargs={'pk': user.id}),
+        responce = self.client.post(
+            reverse('users:update_page', kwargs={'pk': user.id}),
             {
                 'first_name': 'Petya',
                 'last_name': 'Piter',
