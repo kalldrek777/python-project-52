@@ -52,13 +52,14 @@ class TestStatusesCrud(TestCase):
         resp = self.client.post(reverse('statuses:create_page'),
                                 {'name': 'status4'}
                                 )
-        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 302)
         self.assertRedirects(reverse(resp, 'status:index_page'))
 
         resp = self.client.get(reverse('statuses:index_page'))
         self.assertTrue(len(resp.context['statuses']) == 4)
 
     def test_update_status(self):
+        s1 = Status.objects.all()[0]
         self.client.force_login(self.user)
         resp = self.client.post(reverse('statuses:update_page',
                                         kwargs={'pk': 1}),
@@ -66,7 +67,6 @@ class TestStatusesCrud(TestCase):
                                 )
         self.assertEqual(resp.status_code, 302)
         self.assertRedirects(reverse(resp, 'status:index_page'))
-        s1 = Status.objects.get(id=1)
         s1.refresh_from_db()
         self.assertEqual(s1.name, 'updated_status')
 
